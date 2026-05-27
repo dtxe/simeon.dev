@@ -2,7 +2,7 @@ import { useCallback, useRef } from 'react'
 import { ASCII_ART } from '../generated/ascii-art'
 import './AsciiPortrait.css'
 
-const ROWS = ASCII_ART.trim().split('\n')
+const ROWS = ASCII_ART.split('\n')
 const CHAR_ROWS = ROWS.map((row) => [...row])
 
 export default function AsciiPortrait() {
