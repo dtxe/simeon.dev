@@ -30,19 +30,21 @@ export default function AsciiPortrait() {
   }, [])
 
   return (
-    <pre
-      ref={containerRef}
-      className="ascii-portrait"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      {CHAR_ROWS.map((row, ri) => (
-        <div key={ri} className="ascii-row">
-          {row.map((ch, ci) => (
-            <span key={ci}>{ch}</span>
-          ))}
-        </div>
-      ))}
-    </pre>
+    <div data-nosnippet>
+      <pre
+        ref={containerRef}
+        className="ascii-portrait"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        {CHAR_ROWS.map((row, ri) => (
+          <div key={ri} className="ascii-row">
+            {row.map((ch, ci) => (
+              <span key={ci}>{ch}</span>
+            ))}
+          </div>
+        ))}
+      </pre>
+    </div>
   )
 }
