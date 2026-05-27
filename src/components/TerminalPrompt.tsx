@@ -3,7 +3,7 @@ import './TerminalPrompt.css'
 
 const FULL_TEXT = `$ ./simeon.dev
 
-hi i'm simeon, a neuroscientist turned full-stack AI engineer.`
+hi i'm Simeon Wong, a neuroscientist turned full-stack AI engineer.`
 const DURATION_MS = 500
 
 export default function TerminalPrompt({ onDone }: { onDone?: () => void }) {
