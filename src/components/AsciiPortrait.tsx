@@ -15,6 +15,7 @@ type CharPos = { cx: number; cy: number }
 export default function AsciiPortrait() {
   const containerRef = useRef<HTMLPreElement>(null)
   const rafRef = useRef<number>(0)
+  const lastFrameRef = useRef<number>(0)
   const positionsRef = useRef<CharPos[][]>([])
   const spansRef = useRef<HTMLSpanElement[][]>([])
 
@@ -47,7 +48,9 @@ export default function AsciiPortrait() {
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLPreElement>) => {
     cancelAnimationFrame(rafRef.current)
-    rafRef.current = requestAnimationFrame(() => {
+    rafRef.current = requestAnimationFrame((now) => {
+      if (now - lastFrameRef.current < 66) return
+      lastFrameRef.current = now
       const container = containerRef.current
       if (!container || positionsRef.current.length === 0) return
 
@@ -56,7 +59,6 @@ export default function AsciiPortrait() {
       const my = e.clientY - containerRect.top
 
       const style = getComputedStyle(document.documentElement)
-      const accentColor = style.getPropertyValue('--accent').trim()
       const fgColor = style.getPropertyValue('--fg').trim()
       const dimColor = style.getPropertyValue('--dim').trim()
 
@@ -69,10 +71,7 @@ export default function AsciiPortrait() {
           const d = Math.hypot(mx - pos.cx, my - pos.cy)
           const w = gaussian(d, SIGMA)
 
-          // Smooth 3-stop gradient: dim → fg (w=0.5) → accent (w=1)
-          const color = w < 0.5
-            ? `color-mix(in srgb, ${fgColor} ${Math.round(w * 200)}%, ${dimColor})`
-            : `color-mix(in srgb, ${accentColor} ${Math.round((w - 0.5) * 200)}%, ${fgColor})`
+          const color = `color-mix(in srgb, ${fgColor} ${Math.round(w * 100)}%, ${dimColor})`
           span.style.color = color
           span.style.transform = ''
           span.style.textShadow = w > 0.1 ? `0 0 ${Math.round(w * 12)}px ${color}` : ''

@@ -6,7 +6,7 @@ const FULL_TEXT = `$ ./simeon.dev
 hi i'm simeon, a neuroscientist turned full-stack AI engineer.`
 const DURATION_MS = 500
 
-export default function TerminalPrompt() {
+export default function TerminalPrompt({ onDone }: { onDone?: () => void }) {
   const [displayed, setDisplayed] = useState('')
   const [done, setDone] = useState(false)
   const rafRef = useRef<number>(0)
@@ -26,6 +26,7 @@ export default function TerminalPrompt() {
       } else {
         setDisplayed(FULL_TEXT)
         setDone(true)
+        onDone?.()
       }
     }
 
