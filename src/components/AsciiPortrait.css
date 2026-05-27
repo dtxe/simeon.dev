@@ -1,4 +1,6 @@
 .ascii-portrait {
+  --mx: 50%;
+  --my: 50%;
   display: inline-block;
   font-family: inherit;
   font-size: clamp(0.3rem, 1.4vw, 0.7rem);
@@ -9,6 +11,18 @@
   margin-bottom: 2.5rem;
 }
 
+.ascii-portrait--active {
+  color: transparent;
+  background: radial-gradient(
+    circle at var(--mx) var(--my),
+    var(--fg) 0,
+    var(--fg) 1.5rem,
+    var(--dim) 8rem
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
 .ascii-row {
   display: block;
   white-space: pre;
@@ -16,5 +30,4 @@
 
 .ascii-portrait span {
   display: inline-block;
-  transition: color 0.08s ease, text-shadow 0.08s ease, transform 0.12s ease;
 }
