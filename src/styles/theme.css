@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:wght@400;600&display=swap');
+
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161821;
+    --fg: #c6c8d1;
+    --accent: #b4be82;
+    --dim: #3d4063;
+    --link: #84a0c6;
+    --cursor-color: #b4be82;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #e8e9ec;
+    --fg: #33374c;
+    --accent: #668e3d;
+    --dim: #8389a3;
+    --link: #2d539e;
+    --cursor-color: #668e3d;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Cascadia Code', 'Cascadia Mono', 'Fira Code', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}

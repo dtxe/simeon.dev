@@ -1,0 +1,20 @@
+.ascii-portrait {
+  display: inline-block;
+  font-family: inherit;
+  font-size: 0.7rem;
+  line-height: 1.2;
+  color: var(--dim);
+  cursor: crosshair;
+  user-select: none;
+  margin-bottom: 2.5rem;
+}
+
+.ascii-row {
+  display: block;
+  white-space: pre;
+}
+
+.ascii-portrait span {
+  display: inline-block;
+  transition: color 0.08s ease, text-shadow 0.08s ease, transform 0.12s ease;
+}

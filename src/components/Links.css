@@ -1,0 +1,29 @@
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.link-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--link);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.1s ease;
+  width: fit-content;
+}
+
+.link-item:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.link-prompt {
+  color: var(--dim);
+}
+
+.link-item:hover .link-prompt {
+  color: var(--accent);
+}

@@ -1,0 +1,25 @@
+.terminal-prompt {
+  margin-bottom: 2.5rem;
+}
+
+.terminal-text {
+  font-family: inherit;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  white-space: pre;
+  color: var(--fg);
+}
+
+.terminal-text .cursor {
+  color: var(--cursor-color);
+  opacity: 1;
+}
+
+.terminal-text .cursor.blink {
+  animation: blink-cursor 1s step-end infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
