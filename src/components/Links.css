@@ -1,3 +1,11 @@
+.links-label {
+  font-family: inherit;
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: var(--fg);
+  margin: 0 0 0.3rem;
+}
+
 .links {
   display: flex;
   flex-direction: column;
@@ -10,7 +18,9 @@
   gap: 0.3rem;
   color: var(--link);
   text-decoration: none;
-  font-size: 1rem;
+  font-family: inherit;
+  font-size: 1.5rem;
+  line-height: 1.7;
   transition: color 0.1s ease;
   width: fit-content;
 }

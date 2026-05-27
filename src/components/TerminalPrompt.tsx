@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './TerminalPrompt.css'
 
-const FULL_TEXT = `$ simeon.dev
+const FULL_TEXT = `$ ./simeon.dev
 
 hi i'm simeon, a neuroscientist turned full-stack AI engineer.`
 const DURATION_MS = 500

@@ -1,13 +1,15 @@
 import './Links.css'
 
 const LINKS = [
-  { label: 'github',  href: 'https://github.com/simeonkr' },
-  { label: 'linkedin', href: 'https://linkedin.com/in/simeonkrastev' },
-  { label: 'scholar', href: 'https://scholar.google.com/citations?user=TODO' },
+  { label: 'google scholar', href: 'https://scholar.google.com/citations?user=23OCXlIAAAAJ' },
+  { label: 'github',  href: 'https://github.com/dtxe' },
+  { label: 'linkedin', href: 'https://www.linkedin.com/in/simeonwong/' },
 ]
 
 export default function Links() {
   return (
+		<>
+		<p className="links-label">Find me and my work on:</p>
     <nav className="links">
       {LINKS.map(({ label, href }) => (
         <a
@@ -22,5 +24,6 @@ export default function Links() {
         </a>
       ))}
     </nav>
+		</>
   )
 }

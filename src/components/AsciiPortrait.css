@@ -1,7 +1,7 @@
 .ascii-portrait {
   display: inline-block;
   font-family: inherit;
-  font-size: 0.7rem;
+  font-size: clamp(0.3rem, 1.4vw, 0.7rem);
   line-height: 1.2;
   color: var(--dim);
   cursor: crosshair;

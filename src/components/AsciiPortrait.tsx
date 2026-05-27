@@ -2,8 +2,8 @@ import { useCallback, useEffect, useRef } from 'react'
 import { ASCII_ART } from '../generated/ascii-art'
 import './AsciiPortrait.css'
 
-const SIGMA = 90
-const ROWS = ASCII_ART.split('\n')
+const SIGMA = 45
+const ROWS = ASCII_ART.trim().split('\n')
 
 function gaussian(d: number, sigma: number) {
   return Math.exp(-(d * d) / (2 * sigma * sigma))
@@ -29,12 +29,11 @@ export default function AsciiPortrait() {
     const rect0 = firstSpan.getBoundingClientRect()
     const cw = rect0.width
     const ch = rect0.height
-    const containerRect = container.getBoundingClientRect()
 
     positionsRef.current = ROWS.map((row, ri) =>
       row.split('').map((_, ci) => ({
-        cx: ci * cw + cw / 2 - containerRect.left + container.scrollLeft,
-        cy: ri * ch + ch / 2 - containerRect.top + container.scrollTop,
+        cx: ci * cw + cw / 2,
+        cy: ri * ch + ch / 2,
       }))
     )
 
@@ -70,21 +69,13 @@ export default function AsciiPortrait() {
           const d = Math.hypot(mx - pos.cx, my - pos.cy)
           const w = gaussian(d, SIGMA)
 
-          if (w > 0.65) {
-            span.style.color = accentColor
-            span.style.transform = 'rotateY(180deg)'
-            span.style.textShadow = `0 0 ${Math.round(w * 14)}px ${accentColor}`
-          } else if (w > 0.15) {
-            const t = (w - 0.15) / 0.5
-            span.style.color = fgColor
-            span.style.transform = ''
-            span.style.textShadow = `0 0 ${Math.round(w * 10)}px ${fgColor}`
-            void t
-          } else {
-            span.style.color = dimColor
-            span.style.transform = ''
-            span.style.textShadow = ''
-          }
+          // Smooth 3-stop gradient: dim → fg (w=0.5) → accent (w=1)
+          const color = w < 0.5
+            ? `color-mix(in srgb, ${fgColor} ${Math.round(w * 200)}%, ${dimColor})`
+            : `color-mix(in srgb, ${accentColor} ${Math.round((w - 0.5) * 200)}%, ${fgColor})`
+          span.style.color = color
+          span.style.transform = ''
+          span.style.textShadow = w > 0.1 ? `0 0 ${Math.round(w * 12)}px ${color}` : ''
         })
       })
     })
